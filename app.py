@@ -31,7 +31,7 @@ def register():
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-          
+
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
@@ -83,10 +83,10 @@ def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    
+
     if session["user"]:
         return render_template("profile.html", username=username)
-    
+
     return redirect(url_for("login"))
 
 
